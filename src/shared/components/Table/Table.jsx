@@ -5,28 +5,32 @@ import { Link } from 'react-router-dom';
 import Header from "./Header";
 
 const Table = ({ rows, selectContact, fetching, title }) => {
-  if (rows.length) {
     return (
       <div className="card">
         <div className="card-header">
           <Header title={title} isFavorite={false} className={'justify-content-left'} />
         </div>
-        <ul className='list-group list-group-flush'>
-          {rows.map((r, idx) => (
-            <li className='list-group-item'>
-              <Link key={idx} to={'/contact/' + r.id}>
-                <Row onClick={selectContact} row={r} key={idx} />
-              </Link>
-            </li>
-          ))}
-        </ul>
+        {
+          fetching && (
+            <h2 className="">Loading ... </h2>
+          ) ||
+          !fetching && rows.length && (
+            <ul className='list-group list-group-flush'>
+              {rows.map((r, idx) => (
+                <li className='list-group-item'>
+                  <Link key={idx} to={'/contact/' + r.id}>
+                    <Row onClick={selectContact} row={r} key={idx} />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          ) ||
+          !fetching && !rows.length && (
+            <span>No results found. Please review the search criteria</span> 
+          )
+        }
       </div>
     );
-  } else if (fetching) {
-    return <h2 className="">Loading ... </h2>
-  } else {
-    return <span>No results found. Please review the search criteria</span>
-  }
 };
 
 Table.propTypes = {

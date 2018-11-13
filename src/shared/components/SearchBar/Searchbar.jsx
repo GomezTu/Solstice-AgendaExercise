@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+const ENTER_KEY = 'Enter';
+
 class Searchbar extends Component {
   constructor(props) {
     super(props);
@@ -7,6 +9,15 @@ class Searchbar extends Component {
     this.state = {
       value: value,
     };
+  }
+
+  componentDidMount() {
+    window.addEventListener('keydown', this.handleKeyPress);
+  }
+
+  handleKeyPress = ({ key }) => {
+    if (key !== ENTER_KEY) return;
+    this.handleSubmit();
   }
 
   handleSubmit = (ev) => {
@@ -23,7 +34,7 @@ class Searchbar extends Component {
     const value = '';
     this.setState({
       value,
-    }, this.handleSubmit());
+    }, () => this.handleSubmit());
   }
   
   render() {

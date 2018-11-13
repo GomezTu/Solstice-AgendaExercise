@@ -1,24 +1,49 @@
 import React, { Component } from "react";
+import { withRouter } from 'react-router-dom';
 import Header from '../Table/Header';
 import Contact from "../Contact/Contact";
+import './ContactDetail.css';
 
 class ContactDetail extends Component {
+  constructor(props) {
+    super(props);
+    let contact = {
+      phone: [],
+    };
+
+    if (this.props.contact && Object.keys(this.props.contact).length > 0) {
+      contact = this.props.contact;
+    }
+
+    this.state = {
+      contact,
+    }
+  }
+
+  componentDidMount() {
+    if (this.props.contact && Object.keys(this.props.contact).length > 0) return null;
+    const { match: { params } } = this.props;
+    this.props.recoverSelectedContact(params.id);
+  }
+
   render() {
-    const { contact } = this.props;
+    const { toggleIsFavorite } = this.props;
 
     return(
-      <div className='card row justify-content-center'>
+      <div className='contactDetail_container card col-6 offset-3 justify-content-center'>
         <div className='card-header'>
-          <Header title={'Contacts'} isFavorite={contact.isFavorite} to={'/'} />
+          <Header title={'Contacts'}
+            id={this.state.contact.id}
+            changeStatus={toggleIsFavorite}
+            isFavorite={this.state.contact.isFavorite}
+            to={'/'} />
         </div>
-        <div className='card-body'
-          style={{marginLeft: 'auto',
-          marginRight: 'auto'}}>
-          <Contact contact={contact} />
+        <div className='card-body'>
+          <Contact contact={this.state.contact} />
         </div>
       </div>
     );
   }
 }
 
-export default ContactDetail;
+export default withRouter(ContactDetail);

@@ -2,10 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export class ErrorBoundary extends React.Component {
-	constructor(props) {
-		super(props);
-	}
-
 	componentDidCatch(error, info) {
 		const { raiseError } = this.props;
 		raiseError(error);

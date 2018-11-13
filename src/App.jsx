@@ -65,7 +65,13 @@ class AppRouter extends Component {
         filter={this.props.filter}
       />
     );
-    const contactDetail = () => <ContactDetail contact={selectedContact} />;
+    const contactDetail = () => (
+    <ContactDetail
+      toggleIsFavorite={this.props.toggleIsFavorite}
+      contact={selectedContact}
+      recoverSelectedContact={this.props.recoverSelectedContact}
+    />
+    );
 
     return (
       <React.Fragment>

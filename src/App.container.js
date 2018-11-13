@@ -2,11 +2,13 @@ import AppRouter from './App';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
-import { getContacts, changeFilter, raiseError, selectcontact } from "./store/actions";
-import { getFavoriteContacts,
-  getOtherContacts,
-  getFilteredFavoriteContacts,
-  getFilteredOtherContacts } from './store/selector';
+import { getContacts,
+  changeFilter,
+  raiseError,
+  selectcontact,
+  toggleIsFavorite,
+  recoverSelectedContact } from "./store/actions";
+import { getFilteredFavoriteContacts, getFilteredOtherContacts } from './store/selector';
 
 const mapStateToProps = (state) => {
   return({
@@ -26,6 +28,8 @@ const dispatchActionsToProps = (dispatch) => {
       changeFilter,
       raiseError,
       selectcontact,
+      toggleIsFavorite,
+      recoverSelectedContact,
     },
     dispatch
   );

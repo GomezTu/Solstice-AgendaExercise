@@ -1,23 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import FavImgSrc from '../../../assets/FavTrue.png'
+import NonFavImgSrc from '../../../assets/FavFalse.png'
 
-const Header = ({ title, isFavorite, to, className }) => {
+const Header = ({ title, isFavorite, to, className, changeStatus, id }) => {
+
+  const handleClick = (ev) => {
+    changeStatus(id);
+  };
 
   let component = (
-    <div className={`row col ${className}`}>
+    <div className={`row ${className}`}>
       <span>
-        {to !== '' && ('< ')} {title}
+        {to !== '' && ('< ')}
       </span>
-      { isFavorite && (
-        <img src='' />
-      )}
+      <span>
+        {title}
+      </span>
     </div>
   );
 
   if (to !== '') {
     component = (
-      <Link to={to}>
+      <Link style={{textDecoration: 'none'}} to={to}>
         {component}
       </Link>
     );
@@ -26,6 +32,11 @@ const Header = ({ title, isFavorite, to, className }) => {
   return(
     <div>
       {component}
+      { id && (
+        <span onClick={handleClick} style={{position: 'absolute', right: '10px', top: '7px'}}>
+          <img src={isFavorite ? FavImgSrc : NonFavImgSrc} />
+        </span>
+      )}
     </div>
   )
 }
@@ -39,6 +50,7 @@ Header.propTypes = {
 Header.defaultProps = {
   isFavorite: false,
   to: '',
+  id: null,
 }
 
 export default Header;

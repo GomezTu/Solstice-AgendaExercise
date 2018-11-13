@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Header from "../Table/Header";
 import Table from "../Table/Table";
 import Searchbar from "../SearchBar/Searchbar";
+import './List.css'
 
 class List extends Component {
   render() {

@@ -1,6 +1,7 @@
 import React from 'react';
 import defaultImg from "../../../assets/UserLarge.png";
-import PhoneSection from "../PhoneSection/PhoneSection";
+import DetailSection from "../DetailSection/DetailSection";
+import './Contact.css';
 
 const Contact = ({ contact }) => {
 
@@ -12,12 +13,20 @@ const Contact = ({ contact }) => {
   }
 
   return(
-      <div className="card">
-        <img className="card-img-top"
-          style={{maxWidth: '350px'}} src={contactImgUrl} />
-        <div className="card-body">
-          <p className="card-text">UserInfoHere</p>
-          <PhoneSection phoneInfo={contact.phone} />
+      <div>
+        <div className='col-8 offset-2'>
+          <img onError={onImgError} className="card-img-top"
+            style={{maxWidth: '250px'}} src={contactImgUrl} />
+        </div>
+        <div className="card-body" style={{paddingLeft: '0px', paddingRight: '0px'}}>
+          <p className="card-text contact_name">{contact.name}</p>
+          {
+            contact.companyName && (
+              <p className="card-text contact_companyName">{contact.companyName}</p>
+            )
+          }
+          <DetailSection contact={contact}
+             />
         </div>
       </div>
   );
