@@ -8,7 +8,7 @@ const DetailSection = ({ contact = { phone: [] } }) => {
   return(
     <ul className="list-group list-group-flush">
       {
-        objProps.map((p, idx) => {
+        objProps.sort((a, b) => a.localeCompare(b)).map((p, idx) => {
           return(
             <li key={idx} className={`phoneInfo_${p} list-group-item`}>
               <div className='col-12 label'>PHONE:</div>

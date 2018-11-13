@@ -10,6 +10,13 @@
   color: black;
 }
 
+.header_favIcon {
+  position: absolute;
+  right: 10px;
+  top: 7px;
+  cursor: pointer;
+}
+
 .contactRow_companyName {
   font-size: 13px;
   color: grey;

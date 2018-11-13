@@ -33,7 +33,7 @@ const Header = ({ title, isFavorite, to, className, changeStatus, id }) => {
     <div>
       {component}
       { id && (
-        <span onClick={handleClick} style={{position: 'absolute', right: '10px', top: '7px'}}>
+        <span className='header_favIcon' onClick={handleClick}>
           <img src={isFavorite ? FavImgSrc : NonFavImgSrc} />
         </span>
       )}

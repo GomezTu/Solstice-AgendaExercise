@@ -44,9 +44,7 @@ export const getContacts = () => dispatch => {
 		.then(response => response.json())
 		.then(data => {
       const orderedData = data.sort(
-        function(a,b){
-          return a.name.localeCompare(b.name);
-        }
+        (a,b) => a.name.localeCompare(b.name)
       );
       dispatch(contactRequestSuccess(orderedData))
     })
